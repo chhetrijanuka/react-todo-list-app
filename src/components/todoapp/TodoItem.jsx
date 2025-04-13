@@ -41,5 +41,4 @@ const TodoItem = ({
         </li>
     );
 };
-
 export default TodoItem;

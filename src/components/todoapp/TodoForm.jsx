@@ -31,5 +31,4 @@ const TodoForm = ({todos,setTodos}) => {
     </div>
   );
 };
-
 export default TodoForm;
