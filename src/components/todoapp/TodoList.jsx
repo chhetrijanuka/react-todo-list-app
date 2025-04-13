@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import TodoItem from './TodoItem';
 import TodoEmpty from './TodoEmpty';
 
-const TodoList = ({ todos, setTodos }) => {
+export default function TodoList ({ todos, setTodos })  {
 const [editingId, setEditingId] = useState(null);
 const [editingText, setEditingText] = useState('');
 // Save todos to localStorage whenever they change
@@ -53,5 +53,3 @@ const deleteTodo = (id) => {
     </ul>
   );
 };
-
-export default TodoList;
