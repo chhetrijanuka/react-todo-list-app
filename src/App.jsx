@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import TodoForm from "./components/todoapp/TodoForm";
 import TodoList from "./components/todoapp/TodoList";
 import { FiSun, FiMoon } from "react-icons/fi"; // Icons for slider
-
+// import UploadForm from "./components/fileUpload/UploadForm";
+//import "./components/fileUpload/UploadForm.css
 function App() {
   const [todos, setTodos] = useState(() => {
     const saved = localStorage.getItem("todos");
@@ -45,6 +46,8 @@ function App() {
         <TodoForm todos={todos} setTodos={setTodos} />
         <TodoList todos={todos} setTodos={setTodos} />
       </div>
+
+      {/* <UploadForm /> */}
     </div>
   );
 }
