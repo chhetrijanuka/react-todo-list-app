@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import  { useState } from "react";
 
-const TodoForm = ({todos,setTodos}) => {
-    const [inputValue, setInputValue] = useState('');
+const TodoForm = ({ todos, setTodos }) => {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
 
   const addTodo = () => {
-    if (inputValue.trim()) {
-      setTodos([...todos, {
-        id: Date.now(),
-        text: inputValue,
-        completed: false
-      }]);
-      setInputValue('');
-    }
+    if (!title.trim() && !desc.trim()) return;
+
+    // Keep the data shape unchanged – concatenate title + desc
+    const text = desc.trim() ? `${title.trim()} — ${desc.trim()}` : title.trim();
+
+    setTodos([
+      ...todos,
+      { id: Date.now(), text, completed: false }
+    ]);
+    setTitle("");
+    setDesc("");
   };
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      addTodo();
-    }
-  };
+
+  const onEnter = (e) => e.key === "Enter" && addTodo();
+
   return (
-        <div className="input-container">
-        <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Add a new task..."
-        />
-        <button onClick={addTodo}>Add</button>
+    <div className="input-container">
+      <input
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+        onKeyDown={onEnter}
+      />
+      <input
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
+        placeholder="Description"
+        onKeyDown={onEnter}
+      />
+      <button onClick={addTodo}>Add</button>
     </div>
   );
 };
+
 export default TodoForm;
